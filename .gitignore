@@ -5,6 +5,7 @@ node_modules/
 .tools/
 __pycache__/
 *.pyc
+prospector/data/prospector.db
 .vscode/
 .DS_Store
 Thumbs.db
