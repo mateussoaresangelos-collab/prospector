@@ -394,7 +394,7 @@ def show_lead_table(leads: list[Lead]) -> None:
         st.markdown(f"**Status atual:** {selected_lead.status}")
         st.markdown(f"**Favorito:** {'Sim' if selected_lead.favorite else 'Não'}")
         st.markdown("</div>", unsafe_allow_html=True)
-3     with right:
+    with right:
         st.markdown("<div class='panel-card'>", unsafe_allow_html=True)
         st.markdown("<div class='section-title'>Atualizar lead</div>", unsafe_allow_html=True)
         updated_status = st.selectbox("Status", LEAD_STATUSES, index=LEAD_STATUSES.index(selected_lead.status) if selected_lead.status in LEAD_STATUSES else 0, key="update_status")

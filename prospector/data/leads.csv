@@ -1,11 +1,2 @@
-name,category,city,address,phone,email,website,instagram,linkedin,facebook,whatsapp,has_website
-Alison,barbearia,Porto Alegre,"Rua dos Andradas, 901",,,,,,,,False
-Estética Ju,barbearia,Porto Alegre,"Rua General Caldwell, 639",+55 51 3217-3724,,,,,,,False
-Salão Líder Barbearia,barbearia,Porto Alegre,,,,,,,,,False
-Gotan Cabeças do Futuro,barbearia,Porto Alegre,"Rua Coronel Bordini, 245",+55 51 3026-4717,,,,,,,False
-Jussara's Cabellos,barbearia,Porto Alegre,"Avenida Padre Cacique, 700",+55 51 3232-3898,,,,,,,False
-Velho Tranquilo Barbearia,barbearia,Porto Alegre,"Rua Dinarte Ribeiro, 22, Porto Alegre",,,,,,,,False
-Kapo Cabelos,barbearia,Porto Alegre,,,,,,,,,False
-Amigas.com,barbearia,Porto Alegre,"Avenida Aureliano de Figueiredo Pinto, 429",+55 51 3228-3072,,,,,,,False
-J Sisters Estética,barbearia,Porto Alegre,"Rua Botafogo, 837",+55 51 3025-3204,,,,,,,False
-Studio K,barbearia,Porto Alegre,"Rua Múcio Teixeira, 673",+55 51 3085-0301,,http://studiokestetica.blogspot.com.br/,,,,,True
+id,search_id,name,category,city,address,phone,email,website,instagram,linkedin,facebook,whatsapp,has_website,score,status,favorite,notes,ai_message,created_at,updated_at
+1,1,Empresa Teste,Advogado,São Paulo,,,contato@example.com,https://example.com,,,,,True,0,Novo,False,,Mensagem teste,2026-09-22T01:15:11.162465,2026-09-22T01:15:11.162465
