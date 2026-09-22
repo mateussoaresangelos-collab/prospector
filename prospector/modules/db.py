@@ -66,6 +66,13 @@ class DBClient:
             )
             """
         )
+        cursor.execute(
+            """
+            UPDATE leads
+            SET status = 'Novo'
+            WHERE status IN ('Com email', 'Com website', 'Sem email')
+            """
+        )
         self.connection.commit()
 
     def save_search(
