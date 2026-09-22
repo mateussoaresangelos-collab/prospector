@@ -202,10 +202,9 @@ def process_leads(city: str, category: str, force_refresh: bool = False) -> list
             lead.instagram = instagram_finder.find_profile(lead)
 
             if lead.has_website and lead.email:
-                message = ai_generator.generate_message(lead)
-                lead.metadata["ai_message"] = message
+                lead.ai_message = ai_generator.generate_message(lead)
 
-            lead.status = _build_status(lead)
+            lead.status = lead.status or "Novo"
             lead.favorite = False
             lead.notes = lead.notes or ""
             lead.metadata["last_run"] = city
@@ -239,15 +238,6 @@ def process_leads(city: str, category: str, force_refresh: bool = False) -> list
     st.success("Pipeline concluído com sucesso.")
 
     return processed_leads
-
-
-def _build_status(lead: Lead) -> str:
-    """Create a readable status label for the lead."""
-    if lead.email:
-        return "Com email"
-    if lead.has_website:
-        return "Com website"
-    return "Sem email"
 
 
 def show_dashboard(leads: list[Lead]) -> None:
@@ -404,8 +394,7 @@ def show_lead_table(leads: list[Lead]) -> None:
         st.markdown(f"**Status atual:** {selected_lead.status}")
         st.markdown(f"**Favorito:** {'Sim' if selected_lead.favorite else 'Não'}")
         st.markdown("</div>", unsafe_allow_html=True)
-
-    with right:
+3     with right:
         st.markdown("<div class='panel-card'>", unsafe_allow_html=True)
         st.markdown("<div class='section-title'>Atualizar lead</div>", unsafe_allow_html=True)
         updated_status = st.selectbox("Status", LEAD_STATUSES, index=LEAD_STATUSES.index(selected_lead.status) if selected_lead.status in LEAD_STATUSES else 0, key="update_status")

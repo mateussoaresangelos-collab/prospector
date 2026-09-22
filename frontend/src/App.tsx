@@ -11,6 +11,9 @@ type Lead = {
   email: string;
   website: string;
   instagram: string;
+  has_website: boolean;
+  has_email: boolean;
+  has_instagram: boolean;
   score: number;
   status: string;
   favorite: boolean;
@@ -38,6 +41,7 @@ export default function App() {
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [query, setQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('Todos');
+  const [presenceFilter, setPresenceFilter] = useState('Todos');
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
 
@@ -139,11 +143,16 @@ export default function App() {
       .join(' ')
       .toLowerCase()
       .includes(query.toLowerCase());
-    return matchesQuery && (statusFilter === 'Todos' || lead.status === statusFilter);
-  }), [leads, query, statusFilter]);
+    const matchesStatus = statusFilter === 'Todos' || lead.status === statusFilter;
+    const matchesPresence = presenceFilter === 'Todos'
+      || (presenceFilter === 'Website' && lead.has_website)
+      || (presenceFilter === 'Email' && lead.has_email)
+      || (presenceFilter === 'Instagram' && lead.has_instagram);
+    return matchesQuery && matchesStatus && matchesPresence;
+  }), [leads, query, statusFilter, presenceFilter]);
 
-  const totalWithWebsite = leads.filter((lead) => lead.website).length;
-  const totalWithEmail = leads.filter((lead) => lead.email).length;
+  const totalWithWebsite = leads.filter((lead) => lead.has_website).length;
+  const totalWithEmail = leads.filter((lead) => lead.has_email).length;
   const totalFavorites = leads.filter((lead) => lead.favorite).length;
   const averageScore = leads.length ? Math.round(leads.reduce((sum, lead) => sum + lead.score, 0) / leads.length) : 0;
   const formatDate = (value?: string) => value ? new Date(value).toLocaleDateString('pt-BR') : 'recente';
@@ -196,7 +205,7 @@ export default function App() {
         </section>
 
         <section className="table-panel">
-          <div className="panel-heading"><div><span className="panel-kicker">PIPELINE ATIVO</span><h2>Seus leads</h2><p>{filteredLeads.length} resultados para trabalhar agora</p></div><div className="panel-actions"><label className="search-input"><span>⌕</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Buscar empresa, cidade..." /></label><select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}><option>Todos</option><option>Novo</option><option>Contatado</option><option>Em negociação</option><option>Cliente</option><option>Perdido</option></select><button className="refresh-button" onClick={() => { void loadLeads(); void loadHistory(); }} title="Atualizar dados">↻</button></div></div>
+          <div className="panel-heading"><div><span className="panel-kicker">PIPELINE ATIVO</span><h2>Seus leads</h2><p>{filteredLeads.length} resultados para trabalhar agora</p></div><div className="panel-actions"><label className="search-input"><span>⌕</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Buscar empresa, cidade..." /></label><select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}><option>Todos</option><option>Novo</option><option>Contatado</option><option>Em negociação</option><option>Cliente</option><option>Perdido</option></select><select value={presenceFilter} onChange={(e) => setPresenceFilter(e.target.value)}><option>Todos</option><option>Website</option><option>Email</option><option>Instagram</option></select><button className="refresh-button" onClick={() => { void loadLeads(); void loadHistory(); }} title="Atualizar dados">↻</button></div></div>
           <div className="table-scroll"><table>
             <thead>
               <tr>

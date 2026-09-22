@@ -17,6 +17,8 @@ class LeadBase(BaseModel):
     facebook: str = ""
     whatsapp: str = ""
     has_website: bool = False
+    has_email: bool = False
+    has_instagram: bool = False
     score: int = 0
     status: str = "Novo"
     favorite: bool = False

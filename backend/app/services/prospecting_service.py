@@ -20,13 +20,6 @@ class ProspectingService:
     def __init__(self) -> None:
         self.db = DBClient()
 
-    def _build_status(self, lead: Lead) -> str:
-        if lead.email:
-            return "Com email"
-        if lead.has_website:
-            return "Com website"
-        return "Sem email"
-
     def run(self, city: str, category: str, force_refresh: bool = False) -> list[Lead]:
         city = city.strip()
         category = category.strip()
@@ -59,9 +52,9 @@ class ProspectingService:
                 lead.instagram = instagram_finder.find_profile(lead)
 
                 if lead.has_website and lead.email:
-                    lead.metadata["ai_message"] = ai_generator.generate_message(lead)
+                    lead.ai_message = ai_generator.generate_message(lead)
 
-                lead.status = self._build_status(lead)
+                lead.status = lead.status or "Novo"
                 lead.favorite = False
                 lead.notes = lead.notes or ""
                 lead.metadata["last_run"] = city
