@@ -30,7 +30,8 @@ const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000';
 
 export default function App() {
   const [city, setCity] = useState('São Paulo');
-  const [category, setCategory] = useState('advogados');
+  const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -65,9 +66,23 @@ export default function App() {
     }
   };
 
+  const loadCategories = async () => {
+    try {
+      const response = await fetch(`${API_URL}/categories`);
+      if (!response.ok) throw new Error('Não foi possível buscar as categorias.');
+      const data: string[] = await response.json();
+      setCategories(data);
+      setCategory((current) => current || data[0] || '');
+    } catch (loadError) {
+      console.error('Erro ao buscar categorias:', loadError);
+      setError('Não foi possível carregar o catálogo de categorias.');
+    }
+  };
+
   useEffect(() => {
     void loadLeads();
     void loadHistory();
+    void loadCategories();
   }, []);
 
   const handleSearch = async () => {
@@ -139,7 +154,7 @@ export default function App() {
         <div className="brand-lockup"><div className="brand-mark">P</div><div><strong>Prospector</strong><span>Inteligência comercial</span></div></div>
         <div className="sidebar-section-label">Nova prospecção</div>
         <label>Cidade<input value={city} onChange={(e) => setCity(e.target.value)} placeholder="Ex.: São Paulo" /></label>
-        <label>Categoria<input value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Ex.: advogados" /></label>
+        <label>Categoria<select value={category} onChange={(e) => setCategory(e.target.value)} disabled={!categories.length}><option value="">Selecione uma categoria</option>{categories.map((item) => <option key={item} value={item}>{item}</option>)}</select></label>
         <button className="primary-button" onClick={handleSearch} disabled={loading}><span>{loading ? '◌' : '⌕'}</span>{loading ? 'Buscando oportunidades...' : 'Buscar oportunidades'}</button>
         <div className="sidebar-divider" />
         <div className="sidebar-section-label">Visão geral</div>

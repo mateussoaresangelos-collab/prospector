@@ -34,7 +34,7 @@ button { cursor: pointer; }
 .sidebar-section-label, .eyebrow, .panel-kicker { color: var(--cyan); font-size: .67rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
 .sidebar-section-label { margin-bottom: 14px; }
 .sidebar label { display: flex; flex-direction: column; gap: 8px; margin-bottom: 17px; color: #b5c1d0; font-size: .8rem; }
-.sidebar input { width: 100%; padding: 11px 12px; color: var(--ink); background: #101e31; border: 1px solid var(--line); border-radius: 7px; outline: none; }
+.sidebar input, .sidebar select { width: 100%; padding: 11px 12px; color: var(--ink); background: #101e31; border: 1px solid var(--line); border-radius: 7px; outline: none; }
 .sidebar input:focus, .search-input:focus-within { border-color: rgba(55, 213, 216, .65); box-shadow: 0 0 0 3px rgba(55, 213, 216, .1); }
 .sidebar input::placeholder { color: #56657a; }
 .primary-button { display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; min-height: 44px; padding: 11px 14px; color: #07121d; font-weight: 700; background: var(--cyan); border: 0; border-radius: 7px; transition: transform .2s, box-shadow .2s, opacity .2s; }
