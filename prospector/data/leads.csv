@@ -1,2 +1,5 @@
 id,search_id,name,category,city,address,phone,email,website,instagram,linkedin,facebook,whatsapp,has_website,score,status,favorite,notes,ai_message,created_at,updated_at
-1,1,Empresa Teste,Advogado,São Paulo,,,contato@example.com,https://example.com,,,,,True,0,Novo,False,,Mensagem teste,2026-09-22T01:15:11.162465,2026-09-22T01:15:11.162465
+1,1,Guimarães & Ruggiero Advogados,Advogado,São Paulo,"Rua Beneficência Portuguesa, 44, São Paulo",+55 11 3228-9737,contato@grradvogados.com.br,http://grradvogados.com.br/,,,,,True,70,Novo,False,,"Olá Guimarães & Ruggiero Advogados, tudo bem?",2026-09-22T01:23:07.783030,2026-09-22T01:23:07.783030
+2,1,Mattos & Filho Advogados,Advogado,São Paulo,"Rua Coronel Silva Gomes, 54, São Paulo",,,,,,,,False,10,Novo,False,,,2026-09-22T01:23:07.783030,2026-09-22T01:23:07.783030
+3,1,Advogado de Família - Andre Batista,Advogado,São Paulo,"Avenida Paulista, 326, São Paulo",+55 11 94100-2385,,https://www.advogadosdefamilia.adv.br,,,,,True,70,Novo,False,,,2026-09-22T01:23:07.783030,2026-09-22T01:23:07.783030
+4,1,PLKC Advogados,Advogado,São Paulo,"Rua Henrique Schaumann, 600, São Paulo",,,,,,,,False,10,Novo,False,,,2026-09-22T01:23:07.783030,2026-09-22T01:23:07.783030
