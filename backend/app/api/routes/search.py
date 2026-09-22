@@ -16,11 +16,14 @@ def run_search(payload: SearchRequest):
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
+    saved_search = service.db.get_last_search(city=payload.city.strip(), category=payload.category.strip())
+    duration_seconds = saved_search[0]["duration_seconds"] if saved_search else 0.0
+
     return {
         "city": payload.city,
         "category": payload.category,
         "lead_count": len(leads),
-        "duration_seconds": 0.0,
+        "duration_seconds": duration_seconds,
     }
 
 
