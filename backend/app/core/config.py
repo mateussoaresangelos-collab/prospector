@@ -4,8 +4,8 @@ from pathlib import Path
 import os
 
 BASE_DIR = Path(__file__).resolve().parents[3]
-PROJECT_ROOT = BASE_DIR
-DATA_DIR = PROJECT_ROOT / "prospector" / "data"
+PROSPECTOR_DIR = Path(os.getenv("PROSPECTOR_DIR", BASE_DIR / "prospector"))
+DATA_DIR = PROSPECTOR_DIR / "data"
 DB_PATH = DATA_DIR / "prospector.db"
 LEADS_PATH = DATA_DIR / "leads.csv"
 
